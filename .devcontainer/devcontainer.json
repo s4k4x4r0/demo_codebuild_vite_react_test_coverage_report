@@ -20,5 +20,6 @@
         }
       }
     }
-  }
+  },
+  "postCreateCommand": "npm install"
 }
