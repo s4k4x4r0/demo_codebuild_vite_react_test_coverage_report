@@ -2,8 +2,8 @@
   "name": "Demo CodeBuild x Vite x React x テストカバレッジレポート デモアプリ",
   "dockerFile": "Dockerfile",
   "features": {
-    "ghcr.io/devcontainers/features/aws-cli:1": {} ,
-    "ghcr.io/devcontainers-community/features/direnv:1": {}
+    "ghcr.io/devcontainers/features/aws-cli:1": {},
+    "ghcr.io/ChristopherMacGown/devcontainer-features/direnv:1": {}
   },
   "customizations": {
     "vscode": {
