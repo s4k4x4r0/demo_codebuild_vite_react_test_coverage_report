@@ -1,0 +1,17 @@
+# MacOS
+.DS_Store
+
+# Dependency directories
+node_modules/
+
+# TypeScript Compiler output
+*.js
+!jest.config.js
+*.d.ts
+
+# CDK asset staging directory
+.cdk.staging
+cdk.out
+
+# Private configuration files
+.envrc
