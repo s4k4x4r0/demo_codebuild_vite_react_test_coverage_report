@@ -1,3 +1,3 @@
 # CodeBuild x Vite x React x テストカバレッジレポート デモアプリ
 
-CodeBuildでフロントエンドアプリのテストカバレッジを確認するデモ
+CodeBuildでフロントエンドアプリのテストカバレッジを確認するデモです。
