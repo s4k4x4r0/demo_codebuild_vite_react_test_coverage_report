@@ -1,6 +1,15 @@
 # MacOS
 .DS_Store
 
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
 # Dependency directories
 node_modules/
 
@@ -8,6 +17,11 @@ node_modules/
 *.js
 !jest.config.js
 *.d.ts
+
+# Vite
+dist
+dist-ssr
+*.local
 
 # CDK asset staging directory
 .cdk.staging

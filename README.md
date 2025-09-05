@@ -56,3 +56,9 @@ npx cdk bootstrap
 ```bash
 npx cdk deploy
 ```
+
+# メモ
+
+- Vite のテンプレートからファイル移行中。
+  <https://ja.vite.dev/guide/#trying-vite-online>
+- tsconfig.node.json の`moduleResolution`は`node`じゃないと CDK 動かないかも？
