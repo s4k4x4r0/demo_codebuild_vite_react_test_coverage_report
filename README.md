@@ -62,3 +62,4 @@ npx cdk deploy
 - Vite のテンプレートからファイル移行中。
   <https://ja.vite.dev/guide/#trying-vite-online>
 - tsconfig.node.json の`moduleResolution`は`node`じゃないと CDK 動かないかも？
+- synth はできた！
