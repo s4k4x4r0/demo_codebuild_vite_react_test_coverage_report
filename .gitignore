@@ -13,11 +13,6 @@ lerna-debug.log*
 # Dependency directories
 node_modules/
 
-# TypeScript Compiler output
-*.js
-!jest.config.js
-*.d.ts
-
 # Vite
 dist
 dist-ssr
