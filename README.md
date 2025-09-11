@@ -63,3 +63,4 @@ npx cdk deploy
   <https://ja.vite.dev/guide/#trying-vite-online>
 - tsconfig.node.json の`moduleResolution`は`node`じゃないと CDK 動かないかも？
 - synth はできた！
+- レポートとカバレッジを`web/.report/coverage`に出力するようにした。CodeBuild で読み込めるはず。

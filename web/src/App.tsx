@@ -1,5 +1,6 @@
 import "@/App.css";
 import reactLogo from "@/assets/react.svg";
+import { sum } from "@/sum";
 import { useState } from "react";
 import viteLogo from "/vite.svg";
 
@@ -8,6 +9,7 @@ function App() {
 
   return (
     <>
+      <p>{sum(1, 2)}</p>
       <div>
         <a href="https://vite.dev" target="_blank">
           <img src={viteLogo} className="logo" alt="Vite logo" />

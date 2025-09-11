@@ -17,6 +17,7 @@ node_modules/
 dist
 dist-ssr
 *.local
+web/.report
 
 # CDK asset staging directory
 .cdk.staging

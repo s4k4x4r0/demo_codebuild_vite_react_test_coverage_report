@@ -1,7 +1,11 @@
 {
-  "files": [],
-  "references": [
-    { "path": "./tsconfig.web.json" },
-    { "path": "./tsconfig.node.json" }
-  ]
+  "extends": "./tsconfig.base.json",
+  "compilerOptions": {
+    "inlineSourceMap": true,
+    "inlineSources": true,
+    "experimentalDecorators": true,
+
+    "typeRoots": ["./node_modules/@types"]
+  },
+  "exclude": ["node_modules", "cdk.out"]
 }
