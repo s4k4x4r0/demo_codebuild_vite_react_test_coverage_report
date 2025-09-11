@@ -9,6 +9,7 @@ export default defineConfig({
   plugins: [react(), viteTsconfigPaths()],
   root: "./web",
   test: {
+    environment: "happy-dom",
     reporters: ["default", "html"],
     outputFile: `${testReportDir}/index.html`,
     coverage: {
