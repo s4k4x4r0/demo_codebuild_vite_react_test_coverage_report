@@ -9,7 +9,6 @@ function App() {
 
   return (
     <>
-      <p>{sum(1, 2)}</p>
       <div>
         <a href="https://vite.dev" target="_blank">
           <img src={viteLogo} className="logo" alt="Vite logo" />
@@ -20,7 +19,7 @@ function App() {
       </div>
       <h1>Vite + React</h1>
       <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
+        <button onClick={() => setCount((count) => sum(count, 1))}>
           count is {count}
         </button>
         <p>
