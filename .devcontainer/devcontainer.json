@@ -7,16 +7,17 @@
   },
   "customizations": {
     "vscode": {
-      "extensions": [
-        "typespec.typespec-vscode",
-        "esbenp.prettier-vscode"
-      ],
+      "extensions": ["typespec.typespec-vscode", "esbenp.prettier-vscode"],
       "settings": {
         "editor.formatOnSave": true,
         "editor.defaultFormatter": "esbenp.prettier-vscode",
         "editor.codeActionsOnSave": {
           "source.fixAll.eslint": "explicit",
           "source.organizeImports": "explicit"
+        },
+        "workbench.colorCustomizations": {
+          "titleBar.activeBackground": "#315f03",
+          "titleBar.inactiveBackground": "#536047"
         }
       }
     }
