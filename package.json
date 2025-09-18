@@ -13,11 +13,16 @@
   "scripts": {
     "check": "tsc --noEmit",
     "vite": "vite --config web/vite.config.ts",
+    "dev": "npm run vite",
     "cdk": "cd cdk && cdk",
-    "test": "vitest --config web/vite.config.ts run"
+    "vitest": "vitest --config web/vite.config.ts",
+    "test": "npm run vitest run"
   },
   "devDependencies": {
     "@eslint/js": "^9.34.0",
+    "@testing-library/jest-dom": "^6.8.0",
+    "@testing-library/react": "^16.3.0",
+    "@testing-library/user-event": "^14.6.1",
     "@types/react": "^19.1.12",
     "@types/react-dom": "^19.1.9",
     "@vitejs/plugin-react-swc": "^4.0.1",
