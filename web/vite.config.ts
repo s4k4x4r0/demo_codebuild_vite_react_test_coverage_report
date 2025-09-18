@@ -8,6 +8,9 @@ const testReportDir = ".report";
 export default defineConfig({
   plugins: [react(), viteTsconfigPaths()],
   root: "./web",
+  server: {
+    port: 6173,
+  },
   test: {
     environment: "happy-dom",
     reporters: ["default", "html"],
