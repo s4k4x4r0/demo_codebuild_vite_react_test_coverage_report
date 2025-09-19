@@ -46,7 +46,8 @@ npm run storybook
 5. モック（MSW）
 
 - OpenAPI 契約（contracts/openapi/openapi.yaml）を基にハンドラを定義
-- 開発サーバ起動時に MSW を有効化
+- 配置: `web/src/mocks/`（handlers/browser/server）
+- 開発サーバ起動時に `web/src/main.tsx` から MSW を起動（本番ビルドには含めない）
 
   5.1 契約のSSOT（TypeSpec）
 
@@ -88,3 +89,15 @@ npm run cdk deploy --require-approval never
 - Red-Green-Refactor を厳守
 - 受け入れ条件を元にテスト記述 → 実装
 - Google TestSize 分類をテスト名に明記（[Small] / [Medium] / [Large]）
+
+## E2E 実行の注意
+
+- 先に `npm run dev` でサーバを起動してから、別ターミナルで `npm run e2e` を実行
+
+## UI セットアップ（要点）
+
+- Tailwind: `web/tailwind.config.ts` を作成し、`content` と `darkMode: "class"` を設定
+- PostCSS: `web/postcss.config.js` を作成（plugins: tailwindcss, autoprefixer）
+- CSS: `web/src/index.css` に `@tailwind base; @tailwind components; @tailwind utilities;`
+- Radix UI: 必要なパッケージのみ追加して features 内で使用。スタイルはTailwindで調整
+- shadcn/ui: 共通UIは `web/src/components/ui/` に配置して再利用

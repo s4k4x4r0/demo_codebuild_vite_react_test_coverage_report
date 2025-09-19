@@ -78,10 +78,17 @@ specs/001-ec/
 ```
 # Option 1: Single project (DEFAULT)
 web/
-├── models/
-├── services/
-├── cli/
-└── lib/
+├── src/
+│   ├── features/
+│   │   └── product-list/
+│   │       ├── components/
+│   │       ├── pages/
+│   │       ├── store/          # Zustand（UI状態）
+│   │       └── services/       # SWR フェッチ/セレクタ
+│   ├── mocks/                  # MSW（handlers/browser/server）
+│   └── app/                    # ルーター/レイアウト/プロバイダ
+├── public/
+└── tests/ (component-level if needed)
 
 infra/
 └── cdk/
@@ -121,6 +128,23 @@ ios/ or android/
 **Structure Decision**: Option 1（現行 `web/` 単独プロジェクト + `infra/cdk` を追加）
 
 E2E（Playwright）は `tests/e2e/` 配下に配置し、リポジトリ直下の `playwright.config.ts` で testDir を `tests/e2e` に設定します。
+
+MSW 配置と運用:
+
+- `web/src/mocks/` に handlers/browser/server を配置
+- 開発時は `web/src/main.tsx` で worker.start() を起動（本番ビルドでは含めない）
+
+UI/状態の配置指針:
+
+- features-based 構成を採用（`web/src/features/*`）。UI と Zustand ストア、SWR サービスを分離
+
+E2E の起動戦略:
+
+- `npm run dev` で開発サーバを起動してから `npm run e2e` を実行
+
+Storybook:
+
+- 本計画のタスク内で整備（スクリプト整備/設定追加/代表コンポーネントのstories）
 
 ## Phase 0: Outline & Research
 
@@ -169,9 +193,11 @@ _Prerequisites: research.md complete_
    - Quickstart test = story validation steps
 
 5. **Infrastructure design (CDK)**:
-   - S3（静的サイトホスティング）+ CloudFront（OAC/OAI, SPA fallback 200 /index.html）
-   - S3 ブロックパブリックアクセス、CloudFront キャッシュポリシー（静的アセット長期、HTML 短期）
-   - aws-s3-deployment による `web/dist` の配信
+   - S3（静的ホスティング無効）+ CloudFront（OAC前提、OAIは使用しない）、SPA fallback（403/404→/index.html 200）
+   - S3: Block Public Access 全ON、所有権BucketOwnerEnforced、SSE-S3（必要に応じSSE-KMS）、（任意）バージョニング
+   - OAC: signingBehavior=always, originType=s3 を設定し、S3バケットポリシーでSourceArnに対象Distributionを条件付与
+   - CloudFront: HTML短TTL、アセット長TTL、HTTP3/IPv6有効、レスポンスヘッダポリシーでセキュリティヘッダ（段階導入）
+   - デプロイ: aws-s3-deployment で `web/dist` 配信後にキャッシュ無効化（["/*"]) を実施
 
 **Output**: `data-model.md`, `contracts/openapi/openapi.yaml`（MSW モックの契約ベース）, `quickstart.md`（CDK 手順含む）
 
@@ -180,6 +206,13 @@ TypeSpec（SSOT）:
 - API契約は TypeSpec を単一の真実の源泉（SSOT）として管理し、OpenAPI は生成物として扱う
 - 生成コマンド: `npm run tsp:build`（`tspconfig.yaml` に従い `specs/001-ec/contracts` 配下へ出力）
 - 手動編集は TypeSpec 側のみとし、生成された OpenAPI は直接編集しない
+
+UI セットアップ方針（Tailwind / Radix UI / shadcn/ui）:
+
+- Tailwind: postcss経由で導入し、`web/tailwind.config.ts` の `content` は `./web/index.html`, `./web/src/**/*.{ts,tsx}` を指定。`darkMode: "class"` を採用
+- CSS エントリ: `web/src/index.css` に `@tailwind base; @tailwind components; @tailwind utilities;`
+- Radix UI: 必要なプリミティブを機能ごとに個別導入。スタイルはTailwindで上書き（data-state属性活用）
+- shadcn/ui: 共通UIは `web/src/components/ui/` に配置（生成したコンポーネントは自前コードとして管理）
 
 ## Phase 2: Task Planning Approach
 
