@@ -87,7 +87,6 @@ infra/
 └── cdk/
     ├── bin/
     ├── lib/
-    ├── package.json
     └── cdk.json
 
 tests/
