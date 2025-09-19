@@ -126,7 +126,6 @@ E2E（Playwright）は `tests/e2e/` 配下に配置し、リポジトリ直下�
 ## Phase 0: Outline & Research
 
 1. **Extract unknowns from Technical Context** above:
-
    - For each NEEDS CLARIFICATION → research task
    - For each dependency → best practices task
    - For each integration → patterns task
@@ -152,35 +151,36 @@ E2E（Playwright）は `tests/e2e/` 配下に配置し、リポジトリ直下�
 _Prerequisites: research.md complete_
 
 1. **Extract entities from feature spec** → `data-model.md`:
-
    - Entity name, fields, relationships
    - Validation rules from requirements
    - State transitions if applicable
 
 2. **Generate API contracts** from functional requirements:
-
    - For each user action → endpoint
    - Use standard REST/GraphQL patterns
    - Output OpenAPI/GraphQL schema to `/contracts/`
 
 3. **Generate contract tests** from contracts:
-
    - One test file per endpoint
    - Assert request/response schemas
    - Tests must fail (no implementation yet)
 
 4. **Extract test scenarios** from user stories:
-
    - Each story → integration test scenario
    - Quickstart test = story validation steps
 
 5. **Infrastructure design (CDK)**:
-
    - S3（静的サイトホスティング）+ CloudFront（OAC/OAI, SPA fallback 200 /index.html）
    - S3 ブロックパブリックアクセス、CloudFront キャッシュポリシー（静的アセット長期、HTML 短期）
    - aws-s3-deployment による `web/dist` の配信
 
-**Output**: `data-model.md`, `contracts/openapi.yaml`（MSW モックの契約ベース）, `quickstart.md`（CDK 手順含む）
+**Output**: `data-model.md`, `contracts/openapi/openapi.yaml`（MSW モックの契約ベース）, `quickstart.md`（CDK 手順含む）
+
+TypeSpec（SSOT）:
+
+- API契約は TypeSpec を単一の真実の源泉（SSOT）として管理し、OpenAPI は生成物として扱う
+- 生成コマンド: `npm run tsp:build`（`tspconfig.yaml` に従い `specs/001-ec/contracts` 配下へ出力）
+- 手動編集は TypeSpec 側のみとし、生成された OpenAPI は直接編集しない
 
 ## Phase 2: Task Planning Approach
 

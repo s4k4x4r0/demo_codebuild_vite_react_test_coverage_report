@@ -9,7 +9,6 @@
 ## セットアップ
 
 1. 依存関係の導入（後続タスクで段階導入）
-
    - UI: React, Tailwind, Radix, shadcn/ui
    - 状態: Zustand, SWR
    - ルーター: React Router
@@ -46,8 +45,20 @@ npm run storybook
 
 5. モック（MSW）
 
-- OpenAPI 契約（contracts/openapi.yaml）を基にハンドラを定義
+- OpenAPI 契約（contracts/openapi/openapi.yaml）を基にハンドラを定義
 - 開発サーバ起動時に MSW を有効化
+
+  5.1 契約のSSOT（TypeSpec）
+
+- API 契約は TypeSpec をSSOTとして管理します
+- 生成（TypeSpec → OpenAPI）
+
+```bash
+npm run tsp:build
+```
+
+- `tspconfig.yaml` に従って `specs/001-ec/contracts` 配下へOpenAPIを出力します
+- 生成されたOpenAPIは直接編集せず、TypeSpecを更新→再生成してください
 
 6. ビルド
 
