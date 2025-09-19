@@ -1,3 +1,3 @@
 FROM mcr.microsoft.com/devcontainers/typescript-node:22
 
-npx playwright install-deps
+RUN npx playwright install-deps
