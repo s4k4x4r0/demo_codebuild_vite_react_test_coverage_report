@@ -14,7 +14,7 @@
     "check": "tsc --noEmit",
     "vite": "vite --config web/vite.config.ts",
     "dev": "npm run vite",
-    "cdk": "cd cdk && cdk",
+    "cdk": "cd infra/cdk && cdk",
     "vitest": "vitest --config web/vite.config.ts",
     "test": "npm run vitest run"
   },
