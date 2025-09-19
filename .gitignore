@@ -31,3 +31,6 @@ cdk.out
 /playwright-report/
 /blob-report/
 /playwright/.cache/
+
+# TypeSpec Output File
+specs/*/contracts/openapi/openapi.yaml

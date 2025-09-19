@@ -22,6 +22,9 @@
         "workbench.colorCustomizations": {
           "titleBar.activeBackground": "#315f03",
           "titleBar.inactiveBackground": "#536047"
+        },
+        "[typespec]": {
+          "editor.defaultFormatter": "typespec.typespec-vscode"
         }
       }
     }
